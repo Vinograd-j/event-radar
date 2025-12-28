@@ -1,6 +1,8 @@
-package net.vinograd.eventradar.client.domain;
+package net.vinograd.eventradar.profile.domain;
 
 import lombok.Getter;
+import net.vinograd.eventradar.client.domain.Email;
+import net.vinograd.eventradar.client.domain.User;
 
 @Getter
 public class Profile {

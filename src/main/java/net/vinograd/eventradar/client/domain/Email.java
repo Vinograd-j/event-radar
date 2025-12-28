@@ -8,7 +8,7 @@ public class Email {
     private final String email;
 
     public Email(String email) {
-        if (email == null || isValid(email))
+        if (isValid(email))
             throw new IllegalArgumentException("Invalid email address");
         this.email = email;
     }
