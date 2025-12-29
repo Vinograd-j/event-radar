@@ -10,7 +10,7 @@ public class TeamId {
     private final UUID id;
 
     public TeamId(UUID id) {
-        this.id = UUID.randomUUID();
+        this.id = id;
     }
 
 }

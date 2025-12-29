@@ -2,16 +2,16 @@ package net.vinograd.eventradar.profile.application;
 
 import lombok.NonNull;
 import net.vinograd.eventradar.profile.domain.Profile;
-import net.vinograd.eventradar.profile.domain.ProfileId;
+import net.vinograd.eventradar.profile.infrastructure.JpaProfile;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface ProfileRepository {
 
-    Optional<Profile> findById(@NonNull ProfileId profileId);
+    Optional<JpaProfile> findById(@NonNull UUID profileId);
 
-    void save(@NonNull Profile profile);
+    void save(@NonNull JpaProfile profile);
 
-    boolean existById(@NonNull ProfileId profileId);
-
+    boolean existById(@NonNull UUID profileId);
 }

@@ -9,8 +9,8 @@ public class ProfileId {
     @Getter
     private final UUID id;
 
-    public ProfileId(String login) {
-        this.id = UUID.randomUUID();
+    public ProfileId(UUID id) {
+        this.id = id;
     }
 
 }

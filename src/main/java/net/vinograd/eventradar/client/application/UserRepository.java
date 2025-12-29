@@ -1,17 +1,17 @@
 package net.vinograd.eventradar.client.application;
 
 import lombok.NonNull;
-import net.vinograd.eventradar.client.domain.User;
-import net.vinograd.eventradar.client.domain.UserId;
+import net.vinograd.eventradar.client.infrastructure.JpaUser;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface UserRepository {
 
-    boolean existById(@NonNull UserId userId);
+    boolean existById(@NonNull UUID userId);
 
-    Optional<UserId> findById(@NonNull UserId userId);
+    Optional<JpaUser> findById(@NonNull UUID userId);
 
-    void save(@NonNull User user);
+    void save(@NonNull JpaUser user);
 
 }

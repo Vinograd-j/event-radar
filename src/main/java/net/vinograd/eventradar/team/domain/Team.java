@@ -1,30 +1,23 @@
 package net.vinograd.eventradar.team.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import net.vinograd.eventradar.client.domain.User;
 import net.vinograd.eventradar.client.domain.UserId;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Getter
+@AllArgsConstructor
 public class Team {
 
     private final TeamId id;
 
     private final TeamDescription description;
 
-    private final Set<UserId> participants;
+    private final Set<User> participants;
 
     private boolean isActive;
-
-    public Team(TeamId id, TeamDescription teamName, UserId owner) {
-        this.id = id;
-        this.description = teamName;
-        this.participants = new HashSet<>();
-        this.isActive = true;
-
-        participants.add(owner);
-    }
 
     public void deactivate() {
         this.isActive = false;
@@ -34,8 +27,8 @@ public class Team {
         this.isActive = true;
     }
 
-    public void addParticipant(UserId userId) {
-        this.participants.add(userId);
+    public void addParticipant(User user) {
+        this.participants.add(user);
     }
 
     public void removeParticipant(UserId userId) {
