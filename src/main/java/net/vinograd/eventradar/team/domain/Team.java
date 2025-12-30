@@ -2,8 +2,6 @@ package net.vinograd.eventradar.team.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.vinograd.eventradar.client.domain.User;
-import net.vinograd.eventradar.client.domain.UserId;
 
 import java.util.Set;
 
@@ -15,7 +13,7 @@ public class Team {
 
     private final TeamDescription description;
 
-    private final Set<User> participants;
+    private final Set<TeamMember> participants;
 
     private boolean isActive;
 
@@ -27,11 +25,11 @@ public class Team {
         this.isActive = true;
     }
 
-    public void addParticipant(User user) {
+    public void addParticipant(TeamMember user) {
         this.participants.add(user);
     }
 
-    public void removeParticipant(UserId userId) {
+    public void removeParticipant(TeamMember userId) {
         this.participants.remove(userId);
     }
 

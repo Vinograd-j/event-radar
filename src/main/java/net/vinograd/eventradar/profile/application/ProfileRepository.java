@@ -1,7 +1,6 @@
 package net.vinograd.eventradar.profile.application;
 
 import lombok.NonNull;
-import net.vinograd.eventradar.profile.domain.Profile;
 import net.vinograd.eventradar.profile.infrastructure.JpaProfile;
 
 import java.util.Optional;

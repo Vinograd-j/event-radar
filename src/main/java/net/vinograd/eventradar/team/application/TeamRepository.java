@@ -1,7 +1,7 @@
 package net.vinograd.eventradar.team.application;
 
 import lombok.NonNull;
-import net.vinograd.eventradar.team.infrastructure.JpaTeam;
+import net.vinograd.eventradar.team.infrastructure.entity.JpaTeam;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -1,8 +1,9 @@
-package net.vinograd.eventradar.team.infrastructure;
+package net.vinograd.eventradar.team.infrastructure.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import net.vinograd.eventradar.team.application.TeamRepository;
+import net.vinograd.eventradar.team.infrastructure.entity.JpaTeam;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

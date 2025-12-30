@@ -7,7 +7,7 @@ import net.vinograd.eventradar.profile.infrastructure.JpaProfile;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JpaProfileConverter {
+public class ProfileMapper {
 
     public Profile convert(JpaProfile jpaProfile) {
         return new Profile(

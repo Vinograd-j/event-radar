@@ -1,11 +1,10 @@
-package net.vinograd.eventradar.team.infrastructure;
+package net.vinograd.eventradar.team.infrastructure.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.vinograd.eventradar.client.infrastructure.JpaUser;
 
 import java.util.Set;
 import java.util.UUID;
@@ -25,7 +24,8 @@ public class JpaTeam {
 
     private String description;
 
-    private Set<JpaUser> participants;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<JpaTeamMember> members;
 
     private boolean isActive;
 

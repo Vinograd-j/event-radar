@@ -3,7 +3,6 @@ package net.vinograd.eventradar.profile.infrastructure;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import net.vinograd.eventradar.profile.application.ProfileRepository;
-import net.vinograd.eventradar.profile.domain.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

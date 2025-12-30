@@ -10,7 +10,7 @@ import java.util.UUID;
 @ToString
 @Table(name = "user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor()
+@AllArgsConstructor
 @Getter
 public class JpaUser {
 
@@ -27,7 +27,7 @@ public class JpaUser {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private JpaProfile profile;
 
     private boolean isActive;
