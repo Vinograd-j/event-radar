@@ -11,24 +11,26 @@ import net.vinograd.eventradar.team.domain.TeamRole;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class JpaTeamMember {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @EmbeddedId
+    private TeamMemberId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("teamId")
     @JoinColumn(name = "team_id")
     private JpaTeam team;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userId")
     @JoinColumn(name = "user_id")
     private JpaUser user;
 
-    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TeamRole teamRole;
 
 }

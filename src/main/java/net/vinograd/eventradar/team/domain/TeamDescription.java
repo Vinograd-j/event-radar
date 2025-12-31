@@ -30,4 +30,9 @@ public class TeamDescription {
     public void changeTeamBio(String teamBio) {
         this.teamBio = teamBio;
     }
+
+    @Override
+    public String toString() {
+        return teamName + " " + teamBio;
+    }
 }

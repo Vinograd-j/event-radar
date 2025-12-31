@@ -1,6 +1,5 @@
 package net.vinograd.eventradar.client.presentation;
 
-import lombok.AllArgsConstructor;
 import net.vinograd.eventradar.client.domain.Login;
 import net.vinograd.eventradar.client.domain.User;
 import net.vinograd.eventradar.client.domain.UserId;
@@ -10,12 +9,10 @@ import net.vinograd.eventradar.profile.presentation.ProfileMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class UserMapper {
 
-    private ProfileMapper profileMapper;
-
     public User convert(JpaUser jpaUser) {
+        ProfileMapper profileMapper = new ProfileMapper();
         return new User(
                 new UserId(jpaUser.getId(), new Login(jpaUser.getLogin())),
                 new Username(jpaUser.getName(), jpaUser.getLastName()),
@@ -25,6 +22,8 @@ public class UserMapper {
     }
 
     public JpaUser convert(User user) {
+        ProfileMapper profileMapper = new ProfileMapper();
+
         return new JpaUser(
                 user.getId().getId(),
                 user.getId().getLogin().getLogin(),

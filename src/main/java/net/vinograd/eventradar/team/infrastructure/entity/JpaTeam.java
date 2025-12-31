@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,10 +21,7 @@ public class JpaTeam {
     @Column(unique = true)
     private String name;
 
-    private String description;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<JpaTeamMember> members;
+    private String bio;
 
     private boolean isActive;
 

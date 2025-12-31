@@ -2,16 +2,15 @@ package net.vinograd.eventradar.team.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.vinograd.eventradar.client.domain.UserId;
-
+import net.vinograd.eventradar.client.domain.User;
 
 @AllArgsConstructor
 @Getter
 public class TeamMember {
 
-    private UserId userId;
+    private Team team;
 
-    private TeamId teamId;
+    private User user;
 
     private TeamRole role;
 
