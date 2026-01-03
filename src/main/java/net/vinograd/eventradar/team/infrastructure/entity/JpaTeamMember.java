@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import net.vinograd.eventradar.client.infrastructure.JpaUser;
 import net.vinograd.eventradar.team.domain.TeamRole;
 
-import java.util.UUID;
 
 @Entity
 @Getter

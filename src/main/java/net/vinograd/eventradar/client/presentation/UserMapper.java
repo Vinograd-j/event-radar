@@ -5,34 +5,19 @@ import net.vinograd.eventradar.client.domain.User;
 import net.vinograd.eventradar.client.domain.UserId;
 import net.vinograd.eventradar.client.domain.Username;
 import net.vinograd.eventradar.client.infrastructure.JpaUser;
-import net.vinograd.eventradar.profile.presentation.ProfileMapper;
-import org.springframework.stereotype.Service;
+import net.vinograd.eventradar.profile.domain.ProfileId;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class UserMapper {
 
     public User convert(JpaUser jpaUser) {
-        ProfileMapper profileMapper = new ProfileMapper();
         return new User(
                 new UserId(jpaUser.getId(), new Login(jpaUser.getLogin())),
                 new Username(jpaUser.getName(), jpaUser.getLastName()),
-                profileMapper.convert(jpaUser.getProfile()),
+                new ProfileId(jpaUser.getProfile().getId()),
                 jpaUser.isActive()
         );
-    }
-
-    public JpaUser convert(User user) {
-        ProfileMapper profileMapper = new ProfileMapper();
-
-        return new JpaUser(
-                user.getId().getId(),
-                user.getId().getLogin().getLogin(),
-                user.getUsername().getFirstName(),
-                user.getUsername().getLastName(),
-                profileMapper.convert(user.getProfile()),
-                user.isActive()
-        );
-
     }
 
 }

@@ -2,7 +2,7 @@ package net.vinograd.eventradar.client.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.vinograd.eventradar.profile.domain.Profile;
+import net.vinograd.eventradar.profile.domain.ProfileId;
 
 @Getter
 @AllArgsConstructor
@@ -12,7 +12,7 @@ public class User {
 
     private final Username username;
 
-    private final Profile profile;
+    private final ProfileId profile;
 
     private boolean isActive;
 

@@ -4,9 +4,9 @@ import net.vinograd.eventradar.team.domain.Team;
 import net.vinograd.eventradar.team.domain.TeamDescription;
 import net.vinograd.eventradar.team.domain.TeamId;
 import net.vinograd.eventradar.team.infrastructure.entity.JpaTeam;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class TeamMapper {
 
     public Team convert(JpaTeam jpaTeam) {

@@ -4,9 +4,9 @@ import net.vinograd.eventradar.client.domain.Email;
 import net.vinograd.eventradar.profile.domain.Profile;
 import net.vinograd.eventradar.profile.domain.ProfileId;
 import net.vinograd.eventradar.profile.infrastructure.JpaProfile;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class ProfileMapper {
 
     public Profile convert(JpaProfile jpaProfile) {
