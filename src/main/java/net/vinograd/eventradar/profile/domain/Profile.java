@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.vinograd.eventradar.client.domain.Email;
 
+import java.util.UUID;
+
 @Getter
 @AllArgsConstructor
 public class Profile {
 
-    private ProfileId id;
+    private UUID id;
 
     private String displayName;
 

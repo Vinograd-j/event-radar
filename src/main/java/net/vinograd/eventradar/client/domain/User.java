@@ -2,17 +2,20 @@ package net.vinograd.eventradar.client.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.vinograd.eventradar.profile.domain.ProfileId;
+
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
 public class User {
 
-    private final UserId id;
+    private final UUID id;
+
+    private Login login;
 
     private final Username username;
 
-    private final ProfileId profile;
+    private final UUID profile;
 
     private boolean isActive;
 
