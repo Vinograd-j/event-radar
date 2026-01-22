@@ -1,4 +1,4 @@
-package net.vinograd.eventradar.team.infrastructure.entity;
+package net.vinograd.eventradar.team.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

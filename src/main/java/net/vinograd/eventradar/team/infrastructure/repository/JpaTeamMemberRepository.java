@@ -2,17 +2,16 @@ package net.vinograd.eventradar.team.infrastructure.repository;
 
 import lombok.NonNull;
 import net.vinograd.eventradar.team.infrastructure.entity.JpaTeamMember;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import net.vinograd.eventradar.team.domain.TeamMemberId;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Set;
 import java.util.UUID;
 
-@Repository
-public interface JpaTeamMemberRepository extends JpaRepository<@NonNull JpaTeamMember, @NonNull UUID> {
+public interface JpaTeamMemberRepository extends CrudRepository<@NonNull JpaTeamMember, @NonNull TeamMemberId> {
 
-    Set<JpaTeamMember> findAllByUserId(UUID userId);
+    Set<JpaTeamMember> findAllByIdTeamId(UUID teamId);
 
-    Set<JpaTeamMember> findAllByTeamId(UUID teamId);
+    Set<JpaTeamMember> findAllByIdUserId(UUID userId);
 
 }

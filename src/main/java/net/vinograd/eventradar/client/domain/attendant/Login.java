@@ -1,10 +1,9 @@
-package net.vinograd.eventradar.client.domain;
+package net.vinograd.eventradar.client.domain.attendant;
 
 import lombok.Getter;
 
 public class Login {
 
-    @Getter
     private final String login;
 
     public Login(String login) {
@@ -15,6 +14,10 @@ public class Login {
 
     private boolean isValid(String login) {
         return login != null && !login.isBlank() && login.matches("^[a-z]+$");
+    }
+
+    public String value() {
+        return login;
     }
 
 }

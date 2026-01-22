@@ -1,4 +1,4 @@
-package net.vinograd.eventradar.client.domain;
+package net.vinograd.eventradar.client.domain.attendant;
 
 import lombok.Getter;
 
@@ -18,7 +18,7 @@ public class Username {
     }
 
     private boolean isValid(String value){
-        return value.matches("^[а-яА-ЯёЁ ]+$");
+        return value.matches("^[a-zA-Z]+$");
     }
 
     public void changeUserName(String firstName, String lastName) {

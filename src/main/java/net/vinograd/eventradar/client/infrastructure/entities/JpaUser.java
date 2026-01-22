@@ -1,8 +1,7 @@
-package net.vinograd.eventradar.client.infrastructure;
+package net.vinograd.eventradar.client.infrastructure.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import net.vinograd.eventradar.profile.infrastructure.JpaProfile;
 
 import java.util.UUID;
 
@@ -20,14 +19,11 @@ public class JpaUser {
 
     @Column(name = "login", unique = true, nullable = false, updatable = false)
     private String login;
+    
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "first_name")
-    private String name;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Embedded
     private JpaProfile profile;
 
     private boolean isActive;

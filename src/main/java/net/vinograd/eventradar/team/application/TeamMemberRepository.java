@@ -1,22 +1,19 @@
 package net.vinograd.eventradar.team.application;
 
 import lombok.NonNull;
-import net.vinograd.eventradar.client.infrastructure.JpaUser;
-import net.vinograd.eventradar.team.infrastructure.entity.JpaTeam;
-import net.vinograd.eventradar.team.infrastructure.entity.JpaTeamMember;
+import net.vinograd.eventradar.client.domain.root.User;
+import net.vinograd.eventradar.team.domain.Team;
+import net.vinograd.eventradar.team.domain.TeamMemberId;
 
 import java.util.Set;
 import java.util.UUID;
 
 public interface TeamMemberRepository {
 
-    void save(@NonNull JpaTeamMember teamMember);
+    Set<Team> findAllUserTeams(@NonNull UUID memberId);
 
-    Set<JpaTeam> findAllUserTeams(@NonNull UUID memberId);
+    Set<User> findAllTeamMembers(@NonNull UUID teamId);
 
-    Set<JpaUser> findAllTeamMembers(@NonNull UUID teamId);
-
-    void deleteTeamMember(JpaTeamMember teamMember);
-
+    void deleteTeamMember(TeamMemberId teamMemberId);
 
 }

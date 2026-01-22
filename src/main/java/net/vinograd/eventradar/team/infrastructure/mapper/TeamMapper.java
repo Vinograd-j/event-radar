@@ -1,4 +1,4 @@
-package net.vinograd.eventradar.team.presentation;
+package net.vinograd.eventradar.team.infrastructure.mapper;
 
 import net.vinograd.eventradar.team.domain.Team;
 import net.vinograd.eventradar.team.domain.TeamDescription;

@@ -1,10 +1,9 @@
-package net.vinograd.eventradar.client.domain;
+package net.vinograd.eventradar.client.domain.attendant;
 
 import lombok.Getter;
 
 public class Email {
 
-    @Getter
     private final String email;
 
     public Email(String email) {
@@ -15,6 +14,10 @@ public class Email {
 
     private boolean isValid(String value) {
         return value != null && value.matches(".+@.+\\..+");
+    }
+
+    public String value() {
+        return email;
     }
 
 }
