@@ -1,7 +1,5 @@
 package net.vinograd.eventradar.client.domain.attendant;
 
-import lombok.Getter;
-
 public class Email {
 
     private final String email;

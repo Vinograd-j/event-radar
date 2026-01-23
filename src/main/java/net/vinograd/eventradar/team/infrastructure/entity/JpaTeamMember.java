@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.vinograd.eventradar.team.domain.TeamMemberId;
 import net.vinograd.eventradar.team.domain.TeamRole;
 
 @Entity

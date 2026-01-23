@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import net.vinograd.eventradar.client.domain.root.User;
 import net.vinograd.eventradar.client.infrastructure.mapper.UserMapper;
-import net.vinograd.eventradar.client.infrastructure.reposiroty.JpaUserRepository;
+import net.vinograd.eventradar.client.infrastructure.repository.JpaUserRepository;
 import net.vinograd.eventradar.team.application.TeamMemberRepository;
 import net.vinograd.eventradar.team.domain.Team;
-import net.vinograd.eventradar.team.domain.TeamMemberId;
+import net.vinograd.eventradar.team.domain.TeamRole;
+import net.vinograd.eventradar.team.infrastructure.entity.JpaTeamMember;
+import net.vinograd.eventradar.team.infrastructure.entity.TeamMemberId;
 import net.vinograd.eventradar.team.infrastructure.mapper.TeamMapper;
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +52,11 @@ public class TeamMemberRepositoryImpl implements TeamMemberRepository {
     @Override
     public void deleteTeamMember(TeamMemberId teamMemberId) {
         teamMemberRepository.deleteById(teamMemberId);
+    }
+
+    @Override
+    public void addTeamMember(TeamMemberId teamMemberId){
+        teamMemberRepository.save(new JpaTeamMember(teamMemberId, TeamRole.PARTICIPANT));
     }
 
 }

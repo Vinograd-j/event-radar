@@ -2,7 +2,7 @@ package net.vinograd.eventradar.team.infrastructure.repository;
 
 import lombok.NonNull;
 import net.vinograd.eventradar.team.infrastructure.entity.JpaTeamMember;
-import net.vinograd.eventradar.team.domain.TeamMemberId;
+import net.vinograd.eventradar.team.infrastructure.entity.TeamMemberId;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Set;

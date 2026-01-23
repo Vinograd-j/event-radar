@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @ToString
-@Table(name = "user")
+@Table(name = "client")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter

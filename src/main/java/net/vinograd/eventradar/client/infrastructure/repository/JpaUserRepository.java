@@ -1,4 +1,4 @@
-package net.vinograd.eventradar.client.infrastructure.reposiroty;
+package net.vinograd.eventradar.client.infrastructure.repository;
 
 import lombok.NonNull;
 import net.vinograd.eventradar.client.infrastructure.entities.JpaUser;

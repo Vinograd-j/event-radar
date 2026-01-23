@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class TeamMapper {
 
     public Team convert(JpaTeam jpaTeam) {
-        return new Team(
+        return Team.restore(
                 jpaTeam.getId(),
                 new TeamDescription(jpaTeam.getName(), jpaTeam.getBio()),
                 jpaTeam.isActive()
