@@ -10,4 +10,6 @@ import java.util.UUID;
 @Repository
 public interface JpaTeamRepository extends JpaRepository<@NonNull JpaTeam, @NonNull UUID> {
 
+    boolean findByName(String name);
+
 }

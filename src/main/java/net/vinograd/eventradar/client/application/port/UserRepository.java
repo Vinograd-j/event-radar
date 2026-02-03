@@ -12,6 +12,8 @@ public interface UserRepository {
 
     Optional<User> findById(@NonNull UUID userId);
 
+    boolean existByLogin(@NonNull String login);
+
     void save(@NonNull User user);
 
 }

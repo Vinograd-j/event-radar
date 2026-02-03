@@ -2,7 +2,7 @@ package net.vinograd.eventradar.team.infrastructure.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import net.vinograd.eventradar.team.application.TeamRepository;
+import net.vinograd.eventradar.team.application.port.TeamRepository;
 import net.vinograd.eventradar.team.domain.Team;
 import net.vinograd.eventradar.team.infrastructure.mapper.TeamMapper;
 import org.springframework.stereotype.Repository;
@@ -26,6 +26,11 @@ public class TeamRepositoryImpl implements TeamRepository {
     @Override
     public Optional<Team> findById(@NonNull UUID teamId) {
         return this.teamRepository.findById(teamId).map(teamMapper::convert);
+    }
+
+    @Override
+    public boolean existByName(@NonNull String name) {
+        return this.teamRepository.findByName(name);
     }
 
     @Override

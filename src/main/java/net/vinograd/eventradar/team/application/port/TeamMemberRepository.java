@@ -1,4 +1,4 @@
-package net.vinograd.eventradar.team.application;
+package net.vinograd.eventradar.team.application.port;
 
 import lombok.NonNull;
 import net.vinograd.eventradar.client.domain.root.User;

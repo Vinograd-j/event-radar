@@ -9,4 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface JpaUserRepository extends JpaRepository<@NonNull JpaUser, @NonNull UUID> {
+    boolean findByLogin(String login);
 }

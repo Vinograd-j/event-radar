@@ -29,6 +29,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean existByLogin(@NonNull String login) {
+        return this.jpaUserRepository.findByLogin(login);
+    }
+
+    @Override
     public void save(@NonNull User user) {
         jpaUserRepository.save(userMapper.convert(user));
     }
