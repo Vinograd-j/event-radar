@@ -6,7 +6,6 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Team {

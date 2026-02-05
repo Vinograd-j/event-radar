@@ -15,8 +15,12 @@ public class Profile {
 
     private String bio;
 
-    public static Profile restore(String displayName, Username username, String bio) {
-        return new Profile(displayName, username, bio);
+    public static Profile restore(String displayName, String firstName, String lastName, String bio) {
+        return new Profile(displayName, new Username(firstName, lastName), bio);
+    }
+
+    public static Profile defaultProfile(String displayName, String firstName, String lastName) {
+        return new Profile(displayName, new Username(firstName, lastName), "");
     }
 
     public void changeBio(String newBio) {

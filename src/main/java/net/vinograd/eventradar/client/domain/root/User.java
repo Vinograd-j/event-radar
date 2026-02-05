@@ -22,12 +22,12 @@ public class User {
 
     private boolean isActive;
 
-    public static User create(Login login, Email email, Profile profile) {
-        return new User(UUID.randomUUID(), login, email, profile, true);
+    public static User create(Login login, String email, Profile profile) {
+        return new User(UUID.randomUUID(), login, new Email(email), profile, true);
     }
 
-    public static User restore(UUID id, Login login, Email email, Profile profile, boolean active) {
-        return new User(id, login, email, profile, active);
+    public static User restore(UUID id, Login login, String email, Profile profile, boolean active) {
+        return new User(id, login, new Email(email), profile, active);
     }
 
     public void activate() {
