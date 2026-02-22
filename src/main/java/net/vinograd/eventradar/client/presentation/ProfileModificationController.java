@@ -2,8 +2,8 @@ package net.vinograd.eventradar.client.presentation;
 
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.client.application.cases.ProfileModificationUseCase;
-import net.vinograd.eventradar.client.application.commands.DisplayNameModificationCommand;
-import net.vinograd.eventradar.client.application.commands.ProfileBioModificationCommand;
+import net.vinograd.eventradar.client.application.cases.commands.DisplayNameModificationCommand;
+import net.vinograd.eventradar.client.application.cases.commands.ProfileBioModificationCommand;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

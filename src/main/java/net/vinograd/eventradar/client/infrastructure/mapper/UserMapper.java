@@ -1,7 +1,6 @@
 package net.vinograd.eventradar.client.infrastructure.mapper;
 
 import lombok.AllArgsConstructor;
-import net.vinograd.eventradar.client.domain.attendant.Email;
 import net.vinograd.eventradar.client.domain.attendant.Login;
 import net.vinograd.eventradar.client.domain.root.User;
 import net.vinograd.eventradar.client.infrastructure.entities.JpaUser;
@@ -17,7 +16,7 @@ public class UserMapper {
         return User.restore(
                 jpaUser.getId(),
                 new Login(jpaUser.getLogin()),
-                new Email(jpaUser.getEmail()),
+                jpaUser.getEmail(),
                 profileMapper.convert(jpaUser.getProfile()),
                 jpaUser.isActive()
         );

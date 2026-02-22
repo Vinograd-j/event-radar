@@ -1,7 +1,7 @@
 package net.vinograd.eventradar.client.application.cases;
 
 import lombok.RequiredArgsConstructor;
-import net.vinograd.eventradar.client.application.commands.CreateUserCommand;
+import net.vinograd.eventradar.client.application.cases.commands.CreateUserCommand;
 import net.vinograd.eventradar.client.application.exception.LoginOccupiedException;
 import net.vinograd.eventradar.client.application.port.UserRepository;
 import net.vinograd.eventradar.client.domain.attendant.Login;
