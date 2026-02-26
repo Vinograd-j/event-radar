@@ -1,32 +1,31 @@
 package net.vinograd.eventradar.client.application.cases;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import net.vinograd.eventradar.client.application.cases.commands.DisplayNameModificationCommand;
-import net.vinograd.eventradar.client.application.cases.commands.ProfileBioModificationCommand;
+import net.vinograd.eventradar.client.application.cases.commands.ProfileModificationCommand;
 import net.vinograd.eventradar.client.application.port.UserRepository;
+import net.vinograd.eventradar.client.domain.root.Profile;
 import net.vinograd.eventradar.client.domain.root.User;
+import net.vinograd.eventradar.common.application.Result;
+import net.vinograd.eventradar.common.application.UseCase;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProfileModificationUseCase {
+public class ProfileModificationUseCase implements UseCase<ProfileModificationCommand, Profile> {
 
     private final UserRepository userRepository;
 
-    public void changeBio(ProfileBioModificationCommand command) {
-        User user = this.userRepository.findById(command.id()).orElseThrow();
+    @Transactional
+    @Override
+    public Result<Profile> execute(ProfileModificationCommand command) {
+        User user = this.userRepository.findById(command.userId()).orElseThrow();
 
-        user.getProfile().changeBio(command.bio());
-
-        this.userRepository.save(user);
-    }
-
-    public void changeDisplayName(DisplayNameModificationCommand command) {
-        User user = this.userRepository.findById(command.id()).orElseThrow();
-
-        user.getProfile().changeDisplayName(command.displayName());
+        user.getProfile().changeProfileDescription(command.description());
 
         this.userRepository.save(user);
+
+        return Result.success(user.getProfile());
     }
 
 }

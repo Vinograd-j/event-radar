@@ -1,5 +1,6 @@
 package net.vinograd.eventradar.client.application.cases;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.client.application.cases.commands.CreateUserCommand;
 import net.vinograd.eventradar.client.application.exception.LoginOccupiedException;
@@ -15,16 +16,19 @@ public class UserCreationUseCase {
 
     private final UserRepository userRepository;
 
-    public void createNewUser(CreateUserCommand createUserCommand) {
+    @Transactional
+    public User createNewUser(CreateUserCommand createUserCommand) {
         if (userRepository.existByLogin(createUserCommand.login()))
             throw new LoginOccupiedException("User already exists");
 
         User user = User.create(new Login(createUserCommand.login()), createUserCommand.email(),
-                Profile.defaultProfile(createUserCommand.displayName(),
-                        createUserCommand.firstName(),
-                        createUserCommand.lastName()));
+                                Profile.defaultProfile(createUserCommand.displayName(),
+                                        createUserCommand.firstName(),
+                                        createUserCommand.lastName()));
 
         this.userRepository.save(user);
+
+        return user;
     }
 
 }

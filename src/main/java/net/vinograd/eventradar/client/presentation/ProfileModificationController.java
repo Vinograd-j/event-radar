@@ -2,8 +2,9 @@ package net.vinograd.eventradar.client.presentation;
 
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.client.application.cases.ProfileModificationUseCase;
-import net.vinograd.eventradar.client.application.cases.commands.DisplayNameModificationCommand;
-import net.vinograd.eventradar.client.application.cases.commands.ProfileBioModificationCommand;
+import net.vinograd.eventradar.client.application.cases.commands.ProfileModificationCommand;
+import net.vinograd.eventradar.client.domain.root.Profile;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,13 +15,10 @@ public class ProfileModificationController {
     private final ProfileModificationUseCase profileModificationUseCase;
 
     @PostMapping("/change-profile-bio")
-    void changeBio(ProfileBioModificationCommand command) {
-        profileModificationUseCase.changeBio(command);
-    }
+    ResponseEntity<Profile> changeProfileDescription(ProfileModificationCommand command) {
+        Profile value = profileModificationUseCase.execute(command).getValue();
 
-    @PostMapping("/change-display-name")
-    void changeBio(DisplayNameModificationCommand command) {
-        profileModificationUseCase.changeDisplayName(command);
+        return ResponseEntity.ok(value);
     }
 
 }

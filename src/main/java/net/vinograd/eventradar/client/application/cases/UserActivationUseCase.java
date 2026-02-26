@@ -1,5 +1,6 @@
 package net.vinograd.eventradar.client.application.cases;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.client.application.port.UserRepository;
 import net.vinograd.eventradar.client.domain.root.User;
@@ -13,6 +14,7 @@ public class UserActivationUseCase {
 
     private final UserRepository userRepository;
 
+    @Transactional
     public void activate(UUID id) {
         User user = this.userRepository.findById(id).orElseThrow();
         user.activate();
@@ -20,6 +22,7 @@ public class UserActivationUseCase {
         this.userRepository.save(user);
     }
 
+    @Transactional
     public void deactivate(UUID id) {
         User user = this.userRepository.findById(id).orElseThrow();
         user.deactivate();

@@ -18,10 +18,10 @@ public class ProfileMapper {
 
     public JpaProfile convert(Profile profile) {
         return new JpaProfile(
-                profile.getDisplayName(),
+                profile.getDescription().getDisplayName(),
                 profile.getUsername().getFirstName(),
                 profile.getUsername().getLastName(),
-                profile.getBio()
+                profile.getDescription().getBio()
         );
     }
 
