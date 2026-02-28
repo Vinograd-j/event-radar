@@ -1,6 +1,7 @@
 package net.vinograd.eventradar.common.application;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
@@ -12,6 +13,7 @@ public class Result<E> {
 
     private final Error error;
 
+    @Getter
     private final boolean isSuccess;
 
 

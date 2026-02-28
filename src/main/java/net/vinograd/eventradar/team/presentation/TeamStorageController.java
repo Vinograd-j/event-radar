@@ -1,8 +1,12 @@
 package net.vinograd.eventradar.team.presentation;
 
 import lombok.RequiredArgsConstructor;
+import net.vinograd.eventradar.common.application.Result;
 import net.vinograd.eventradar.team.application.cases.TeamCreationUseCase;
 import net.vinograd.eventradar.team.application.cases.commands.TeamCreationCommand;
+import net.vinograd.eventradar.team.domain.Team;
+import org.jspecify.annotations.NonNull;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +17,12 @@ public class TeamStorageController {
 
     private final TeamCreationUseCase teamCreationUseCase;
 
+    private final TeamApiHandler teamApiHandler;
+
     @PostMapping("/create-team")
-    public void createTeam(@RequestBody TeamCreationCommand command) {
-        teamCreationUseCase.execute(command);
+    public ResponseEntity<@NonNull Team> createTeam(@RequestBody TeamCreationCommand command) {
+        Result<Team> result = teamCreationUseCase.execute(command);
+        return teamApiHandler.convertResultToResponseEntity(result);
     }
 
 }

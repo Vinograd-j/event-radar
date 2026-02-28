@@ -22,7 +22,7 @@ public class TeamMapper {
                 team.getDescription().getTeamName(),
                 team.getDescription().getTeamBio(),
                 team.isActive()
-            );
+        );
     }
 
 }

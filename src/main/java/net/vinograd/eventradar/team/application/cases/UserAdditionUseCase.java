@@ -3,10 +3,10 @@ package net.vinograd.eventradar.team.application.cases;
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.common.application.Result;
 import net.vinograd.eventradar.common.application.UseCase;
+import net.vinograd.eventradar.team.application.error.TeamError;
 import net.vinograd.eventradar.team.application.port.TeamMemberRepository;
 import net.vinograd.eventradar.team.application.port.TeamRepository;
 import net.vinograd.eventradar.team.application.cases.commands.AdditionUserToTeamCommand;
-import net.vinograd.eventradar.team.application.error.TeamBlockedError;
 import net.vinograd.eventradar.team.domain.Team;
 import net.vinograd.eventradar.team.infrastructure.entity.TeamMemberId;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class UserAdditionUseCase implements UseCase<AdditionUserToTeamCommand, T
         Team team = teamRepository.findById(command.teamId()).orElseThrow();
 
         if (!team.isActive())
-            return Result.failure(new TeamBlockedError());
+            return Result.failure(TeamError.INACTIVE);
 
         teamMemberRepository.addTeamMember(new TeamMemberId(command.teamId(), team.getId()));
 
