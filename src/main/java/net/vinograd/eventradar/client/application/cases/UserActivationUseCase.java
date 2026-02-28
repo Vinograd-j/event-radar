@@ -2,32 +2,31 @@ package net.vinograd.eventradar.client.application.cases;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import net.vinograd.eventradar.client.application.cases.commands.UserActivationCommand;
 import net.vinograd.eventradar.client.application.port.UserRepository;
 import net.vinograd.eventradar.client.domain.root.User;
+import net.vinograd.eventradar.common.application.Result;
+import net.vinograd.eventradar.common.application.UseCase;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserActivationUseCase {
+public class UserActivationUseCase implements UseCase<UserActivationCommand, User> {
 
     private final UserRepository userRepository;
 
     @Transactional
-    public void activate(UUID id) {
-        User user = this.userRepository.findById(id).orElseThrow();
-        user.activate();
+    @Override
+    public Result<User> execute(UserActivationCommand command) {
+        User user = this.userRepository.findById(command.userId()).orElseThrow();
 
-        this.userRepository.save(user);
-    }
+        if (command.activated()) {
+            user.activate();
+        } else {
+            user.deactivate();
+        }
 
-    @Transactional
-    public void deactivate(UUID id) {
-        User user = this.userRepository.findById(id).orElseThrow();
-        user.deactivate();
-
-        this.userRepository.save(user);
+        return Result.success(user);
     }
 
 }

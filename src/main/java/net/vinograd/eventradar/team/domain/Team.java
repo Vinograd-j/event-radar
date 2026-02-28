@@ -12,7 +12,7 @@ public class Team {
 
     private final UUID id;
 
-    private final TeamDescription description;
+    private TeamDescription description;
 
     private boolean isActive;
 
@@ -22,6 +22,10 @@ public class Team {
 
     public static Team restore(UUID id, TeamDescription description, boolean active) {
         return new Team(id, description, active);
+    }
+
+    public void changeDesctiption(TeamDescription description) {
+        this.description = description;
     }
 
     public void deactivate() {

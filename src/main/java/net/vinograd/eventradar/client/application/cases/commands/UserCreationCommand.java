@@ -1,6 +1,6 @@
 package net.vinograd.eventradar.client.application.cases.commands;
 
-public record CreateUserCommand(
+public record UserCreationCommand(
         String login,
         String email,
         String displayName,

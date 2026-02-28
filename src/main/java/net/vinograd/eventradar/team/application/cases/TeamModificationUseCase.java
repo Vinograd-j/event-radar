@@ -1,32 +1,28 @@
 package net.vinograd.eventradar.team.application.cases;
 
 import lombok.RequiredArgsConstructor;
-import net.vinograd.eventradar.team.application.cases.commands.TeamBioModificationCommand;
-import net.vinograd.eventradar.team.application.cases.commands.TeamTitleModificationCommand;
+import net.vinograd.eventradar.common.application.Result;
+import net.vinograd.eventradar.common.application.UseCase;
+import net.vinograd.eventradar.team.application.cases.commands.TeamDescriptionModificationCommand;
 import net.vinograd.eventradar.team.application.port.TeamRepository;
 import net.vinograd.eventradar.team.domain.Team;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class TeamModificationUseCase {
+public class TeamModificationUseCase implements UseCase<TeamDescriptionModificationCommand, Team> {
 
     private final TeamRepository teamRepository;
 
-    public void changeTeamBio(TeamBioModificationCommand command) {
-        Team team = teamRepository.findById(command.id()).orElseThrow();
+    @Override
+    public Result<Team> execute(TeamDescriptionModificationCommand command) {
+        Team team = teamRepository.findById(command.teamId()).orElseThrow();
 
-        team.getDescription().changeTeamBio(command.newBio());
-
-        teamRepository.save(team);
-    }
-
-    public void changeTeamTitle(TeamTitleModificationCommand command) {
-        Team team = teamRepository.findById(command.id()).orElseThrow();
-
-        team.getDescription().changeTeamName(command.newTitle());
+        team.changeDesctiption(command.teamDescription());
 
         teamRepository.save(team);
+
+        return Result.success(team);
     }
 
 }

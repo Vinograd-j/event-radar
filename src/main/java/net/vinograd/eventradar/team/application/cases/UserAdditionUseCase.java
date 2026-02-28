@@ -1,29 +1,34 @@
 package net.vinograd.eventradar.team.application.cases;
 
 import lombok.RequiredArgsConstructor;
+import net.vinograd.eventradar.common.application.Result;
+import net.vinograd.eventradar.common.application.UseCase;
 import net.vinograd.eventradar.team.application.port.TeamMemberRepository;
 import net.vinograd.eventradar.team.application.port.TeamRepository;
 import net.vinograd.eventradar.team.application.cases.commands.AdditionUserToTeamCommand;
-import net.vinograd.eventradar.team.application.exception.TeamBlockedException;
+import net.vinograd.eventradar.team.application.error.TeamBlockedError;
 import net.vinograd.eventradar.team.domain.Team;
 import net.vinograd.eventradar.team.infrastructure.entity.TeamMemberId;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserAdditionUseCase {
+public class UserAdditionUseCase implements UseCase<AdditionUserToTeamCommand, Team> {
 
     private final TeamMemberRepository teamMemberRepository;
 
     private final TeamRepository teamRepository;
 
-    public void addUserToTeam(AdditionUserToTeamCommand command) {
+    @Override
+    public Result<Team> execute(AdditionUserToTeamCommand command) {
         Team team = teamRepository.findById(command.teamId()).orElseThrow();
 
         if (!team.isActive())
-            throw new TeamBlockedException("the team is blocked! User cannot be added");
+            return Result.failure(new TeamBlockedError());
 
         teamMemberRepository.addTeamMember(new TeamMemberId(command.teamId(), team.getId()));
+
+        return Result.success(team);
     }
 
 }

@@ -10,7 +10,7 @@ public class Result<E> {
 
     private final E entity;
 
-    private final net.vinograd.eventradar.common.application.Error error;
+    private final Error error;
 
     private final boolean isSuccess;
 
@@ -23,7 +23,7 @@ public class Result<E> {
         return success(null);
     }
 
-    public static <E> Result<E> failure(net.vinograd.eventradar.common.application.Error error) {
+    public static <E> Result<E> failure(Error error) {
         return new Result<>(null, error, false);
     }
 
@@ -33,7 +33,7 @@ public class Result<E> {
 
     public E getValue() {
         if (isFailure())
-            throw new IllegalStateException("Result isnt successful, impossible to have a value");
+            throw new IllegalStateException("Result isn't successful, impossible to have a value");
 
         if (Objects.isNull(entity))
             throw new IllegalStateException("Empty success! There is no value");
