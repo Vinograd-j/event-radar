@@ -3,7 +3,7 @@ package net.vinograd.eventradar.client.application.cases;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.client.application.cases.commands.UserCreationCommand;
-import net.vinograd.eventradar.client.application.error.UserError;
+import net.vinograd.eventradar.client.application.error.exception.UserAlreadyExistsException;
 import net.vinograd.eventradar.client.application.port.UserRepository;
 import net.vinograd.eventradar.client.domain.attendant.Login;
 import net.vinograd.eventradar.client.domain.root.Profile;
@@ -21,9 +21,8 @@ public class UserCreationUseCase implements UseCase<UserCreationCommand, User> {
     @Transactional
     @Override
     public Result<User> execute(UserCreationCommand command) {
-        if (userRepository.existByLogin(command.login())) {
-            return Result.failure(UserError.ALREADY_EXISTS);
-        }
+        if (userRepository.existByLogin(command.login()))
+            return Result.failure(new UserAlreadyExistsException("User with login " + command.login() + " already exists"));
 
         User user = User.create(new Login(command.login()), command.email(),
                 Profile.defaultProfile(command.displayName(),

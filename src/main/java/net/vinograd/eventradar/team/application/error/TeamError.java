@@ -1,9 +1,9 @@
 package net.vinograd.eventradar.team.application.error;
 
-import net.vinograd.eventradar.common.application.Error;
+import net.vinograd.eventradar.common.application.ApiError;
 import net.vinograd.eventradar.common.application.Result;
 
-public enum TeamError implements Error {
+public enum TeamError implements ApiError {
 
     NOT_FOUND,
     INACTIVE,

@@ -3,7 +3,8 @@ package net.vinograd.eventradar.client.application.cases;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.client.application.cases.commands.ProfileModificationCommand;
-import net.vinograd.eventradar.client.application.error.UserError;
+import net.vinograd.eventradar.client.application.error.exception.UserInactiveException;
+import net.vinograd.eventradar.client.application.error.exception.UserNotFoundException;
 import net.vinograd.eventradar.client.application.port.UserRepository;
 import net.vinograd.eventradar.client.domain.root.Profile;
 import net.vinograd.eventradar.client.domain.root.User;
@@ -25,12 +26,12 @@ public class ProfileModificationUseCase implements UseCase<ProfileModificationCo
         Optional<User> userOptional = this.userRepository.findById(command.userId());
 
         if (userOptional.isEmpty())
-            return Result.failure(UserError.NOT_FOUND);
+            return Result.failure(new UserNotFoundException("User not found"));
 
         User user = userOptional.get();
 
         if (!user.isActive())
-            return Result.failure(UserError.INACTIVE);
+            return Result.failure(new UserInactiveException("User is inactive"));
 
         user.getProfile().changeProfileDescription(command.description());
 

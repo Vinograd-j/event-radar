@@ -1,7 +1,7 @@
 package net.vinograd.eventradar.team.application.error;
 
 import net.vinograd.eventradar.common.presentation.AbstractErrorHandler;
-import net.vinograd.eventradar.common.application.Error;
+import net.vinograd.eventradar.common.application.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
@@ -10,7 +10,7 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class TeamErrorHandler extends AbstractErrorHandler {
 
-    public void handle(Error error) {
+    public void handle(ApiError error) {
         if (error instanceof TeamError) {
             handle((TeamError) error);
         } else {

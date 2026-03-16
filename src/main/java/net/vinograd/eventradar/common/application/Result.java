@@ -11,11 +11,10 @@ public class Result<E> {
 
     private final E entity;
 
-    private final Error error;
+    private final RuntimeException error;
 
     @Getter
     private final boolean isSuccess;
-
 
     public static <E> Result<E> success(E entity) {
         return new Result<>(entity, null, true);
@@ -25,7 +24,7 @@ public class Result<E> {
         return success(null);
     }
 
-    public static <E> Result<E> failure(Error error) {
+    public static <E> Result<E> failure(RuntimeException error) {
         return new Result<>(null, error, false);
     }
 
@@ -43,7 +42,7 @@ public class Result<E> {
         return entity;
     }
 
-    public Error getError() {
+    public RuntimeException getException() {
         if (isSuccess)
             throw new IllegalStateException("Result is successful, impossible to have an error");
 

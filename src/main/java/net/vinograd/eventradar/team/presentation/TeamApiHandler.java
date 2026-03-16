@@ -22,7 +22,7 @@ public class TeamApiHandler {
     }
 
     private ResponseEntity<@NonNull Team> handleError(Result<@NonNull Team> result) {
-        teamErrorHandler.handle(result.getError());
+        teamErrorHandler.handle(result.getException());
         return teamErrorHandler.getResponse();
     }
 
