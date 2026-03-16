@@ -17,12 +17,15 @@ public class TeamStorageController {
 
     private final TeamCreationUseCase teamCreationUseCase;
 
-    private final TeamApiHandler teamApiHandler;
 
     @PostMapping("/create-team")
     public ResponseEntity<@NonNull Team> createTeam(@RequestBody TeamCreationCommand command) {
         Result<Team> result = teamCreationUseCase.execute(command);
-        return teamApiHandler.convertResultToResponseEntity(result);
+
+        if (result.isFailure())
+            throw result.getException();
+
+        return ResponseEntity.ok(result.getValue());
     }
 
 }

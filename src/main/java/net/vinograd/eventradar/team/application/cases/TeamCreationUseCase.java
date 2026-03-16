@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import net.vinograd.eventradar.common.application.Result;
 import net.vinograd.eventradar.common.application.UseCase;
 import net.vinograd.eventradar.team.application.cases.commands.TeamCreationCommand;
-import net.vinograd.eventradar.team.application.error.TeamError;
+import net.vinograd.eventradar.team.application.error.excaption.TeamNameOccupiedException;
 import net.vinograd.eventradar.team.application.port.TeamRepository;
 import net.vinograd.eventradar.team.domain.Team;
 import net.vinograd.eventradar.team.domain.TeamDescription;
@@ -20,8 +20,9 @@ public class TeamCreationUseCase implements UseCase<TeamCreationCommand, Team> {
     @Transactional
     @Override
     public Result<Team> execute(TeamCreationCommand command) {
+
         if (teamRepository.existByName(command.teamName())){
-            return Result.failure(TeamError.NAME_OCCUPIED);
+            return Result.failure(new TeamNameOccupiedException("Name " + command.teamName() + " is occupied"));
         }
 
         Team team = Team.create(new TeamDescription(command.teamName(), command.bio()));

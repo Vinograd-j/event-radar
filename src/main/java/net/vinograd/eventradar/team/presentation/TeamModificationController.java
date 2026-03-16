@@ -21,18 +21,25 @@ public class TeamModificationController {
 
     private final TeamModificationUseCase teamModificationUseCase;
 
-    private final TeamApiHandler teamApiHandler;
 
     @PostMapping("/addUserToTeam")
     public ResponseEntity<@NonNull Team> addUserToTeam(@RequestBody AdditionUserToTeamCommand command) {
         Result<Team> result = userAdditionUseCase.execute(command);
-        return teamApiHandler.convertResultToResponseEntity(result);
+
+        if (result.isFailure())
+            throw result.getException();
+
+        return ResponseEntity.ok(result.getValue());
     }
 
     @PostMapping("/changeTeamDescription")
     public ResponseEntity<@NonNull Team> changeTeamBio(@RequestBody TeamDescriptionModificationCommand command) {
         Result<Team> result = teamModificationUseCase.execute(command);
-        return teamApiHandler.convertResultToResponseEntity(result);
+
+        if (result.isFailure())
+            throw result.getException();
+
+        return ResponseEntity.ok(result.getValue());
     }
 
 }
